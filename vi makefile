@@ -1,0 +1,18 @@
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -std=c99 -Iinclude
+
+SRC = src/main.c src/account.c src/file.c src/transaction.c src/utils.c
+OBJ = $(SRC:.c=.o)
+
+TARGET = bank
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+        $(CC) $(CFLAGS) -o $(TARGET) $(OBJ)
+
+%.o: %.c
+        $(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+        rm -f $(OBJ) $(TARGET)
